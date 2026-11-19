@@ -1,0 +1,15 @@
+services:
+  studio:
+    build: .
+    ports:
+      - "${BIND_ADDRESS:-127.0.0.1}:8000:8000"
+    environment:
+      DEMO_MODE: ${DEMO_MODE:-true}
+      RUNPOD_API_KEY: ${RUNPOD_API_KEY:-}
+      PUBLIC_MEDIA_BASE_URL: ${PUBLIC_MEDIA_BASE_URL:-}
+      DATA_DIR: /data
+    volumes:
+      - studio-data:/data
+    restart: unless-stopped
+volumes:
+  studio-data:
